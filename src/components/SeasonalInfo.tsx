@@ -174,14 +174,17 @@ export const SeasonalInfo: React.FC = () => {
       }
 
       // 季节切换器光晕动画
-      gsap.to('.season-glow', {
-        scale: 1.2,
-        opacity: 0.6,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+      const seasonGlowElement = root.querySelector('.season-glow');
+      if (seasonGlowElement) {
+        gsap.to(seasonGlowElement, {
+          scale: 1.2,
+          opacity: 0.6,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        });
+      }
 
     });
     return () => ctx.revert();
@@ -367,7 +370,7 @@ export const SeasonalInfo: React.FC = () => {
             <img
               src={theme.images[2] ?? theme.images[0]}
               alt={`${season} hero`}
-              loading="lazy"
+
               className="w-full h-[520px] object-cover will-change-transform scale-110"
               onLoad={(e) => (e.currentTarget.style.opacity = '1')}
               onError={handleImgError}
@@ -424,7 +427,7 @@ export const SeasonalInfo: React.FC = () => {
               <img
                 src={theme.images[3] ?? theme.images[0]}
                 alt={`${season} detail 1`}
-                loading="lazy"
+  
                 className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                 onLoad={(e) => (e.currentTarget.style.opacity = '1')}
                 onError={handleImgError}
@@ -445,7 +448,7 @@ export const SeasonalInfo: React.FC = () => {
               <img
                 src={theme.images[4] ?? theme.images[1] ?? theme.images[0]}
                 alt={`${season} detail 2`}
-                loading="lazy"
+  
                 className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
                 onLoad={(e) => (e.currentTarget.style.opacity = '1')}
                 onError={handleImgError}

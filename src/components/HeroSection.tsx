@@ -51,14 +51,16 @@ export const HeroSection: React.FC = () => {
       const yPos = (clientY / window.innerHeight - 0.5) * 30;
 
       // 背景轻微跟随
-      gsap.to(bgRef.current, {
-        x: xPos * 0.3,
-        y: yPos * 0.3,
-        rotationY: xPos * 0.02,
-        rotationX: -yPos * 0.02,
-        duration: 1.5,
-        ease: 'power2.out',
-      });
+      if (bgRef.current) {
+        gsap.to(bgRef.current, {
+          x: xPos * 0.3,
+          y: yPos * 0.3,
+          rotationY: xPos * 0.02,
+          rotationX: -yPos * 0.02,
+          duration: 1.5,
+          ease: 'power2.out',
+        });
+      }
 
       // 标题跟随
       if (titleRef.current) {
@@ -91,58 +93,75 @@ export const HeroSection: React.FC = () => {
       const tl = gsap.timeline({ delay: 0.3 });
       
       // 背景优雅入场
-      tl.from(bgRef.current, {
-        scale: 1.3,
-        opacity: 0,
-        duration: 2,
-        ease: 'power3.out',
-      })
+      if (bgRef.current) {
+        tl.from(bgRef.current, {
+          scale: 1.3,
+          opacity: 0,
+          duration: 2,
+          ease: 'power3.out',
+        });
+      }
+      
       // 标题分层入场
-      .from(titleRef.current, {
-        y: 80,
-        opacity: 0,
-        duration: 1.4,
-        ease: 'power4.out',
-      }, '-=1.2')
+      if (titleRef.current) {
+        tl.from(titleRef.current, {
+          y: 80,
+          opacity: 0,
+          duration: 1.4,
+          ease: 'power4.out',
+        }, '-=1.2');
+      }
+      
       // 描述文字入场
-      .from(descRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-      }, '-=0.8')
+      if (descRef.current) {
+        tl.from(descRef.current, {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+        }, '-=0.8');
+      }
+      
       // CTA按钮入场
-      .from(ctaRef.current?.children || [], {
-        y: 30,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power3.out',
-      }, '-=0.5')
+      if (ctaRef.current) {
+        tl.from(ctaRef.current.children || [], {
+          y: 30,
+          opacity: 0,
+          stagger: 0.12,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.5');
+      }
+      
       // 特色卡片入场
-      .from(cardsRef.current?.children || [], {
-        y: 50,
-        opacity: 0,
-        scale: 0.95,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'power3.out',
-      }, '-=0.4')
+      if (cardsRef.current) {
+        tl.from(cardsRef.current.children || [], {
+          y: 50,
+          opacity: 0,
+          scale: 0.95,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'power3.out',
+        }, '-=0.4');
+      }
+      
       // 滚动指示器
-      .from(scrollIndicatorRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-      }, '-=0.3');
+      if (scrollIndicatorRef.current) {
+        tl.from(scrollIndicatorRef.current, {
+          opacity: 0,
+          y: 20,
+          duration: 0.8,
+        }, '-=0.3');
 
-      // 滚动指示器持续动画
-      gsap.to(scrollIndicatorRef.current, {
-        y: 10,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+        // 滚动指示器持续动画
+        gsap.to(scrollIndicatorRef.current, {
+          y: 10,
+          duration: 1.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        });
+      }
 
     }, heroRef);
 

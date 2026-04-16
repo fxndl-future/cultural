@@ -312,7 +312,7 @@ export const MapComponent: React.FC = () => {
                   src={point.images[0]}
                   className="w-full h-full object-cover"
                   alt={point.name}
-                  loading="lazy"
+
                   onError={(e) => {
                     e.currentTarget.src = 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1200';
                   }}

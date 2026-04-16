@@ -55,7 +55,7 @@ export const Timeline: React.FC = () => {
   const lineRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+
   const [, setLikeTick] = useState(0);
 
   const toggleLike = (id: string) => {
@@ -80,24 +80,24 @@ export const Timeline: React.FC = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Update selectedYear based on scroll
-      HISTORY_TIMELINE.forEach((item, index) => {
+      HISTORY_TIMELINE.forEach((_, index) => {
         const card = cardsRef.current[index];
         if (!card) return;
         ScrollTrigger.create({
           trigger: card,
           start: 'top center',
           end: 'bottom center',
-          onEnter: () => setSelectedYear(item.year),
-          onEnterBack: () => setSelectedYear(item.year),
         });
       });
       
       // Background gradient shift based on season
-      gsap.to(containerRef.current, {
-        background: activeTab === 'history' ? 'linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)' : '#ffffff',
-        duration: 1,
-        ease: 'power2.inOut'
-      });
+      if (containerRef.current) {
+        gsap.to(containerRef.current, {
+          background: activeTab === 'history' ? 'linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)' : '#ffffff',
+          duration: 1,
+          ease: 'power2.inOut'
+        });
+      }
 
       // Line drawing animation
       if (lineRef.current) {
@@ -140,13 +140,7 @@ export const Timeline: React.FC = () => {
     return () => ctx.revert();
   }, [activeTab]);
 
-  const scrollToYear = (year: string) => {
-    const index = HISTORY_TIMELINE.findIndex(item => item.year === year);
-    if (index !== -1 && cardsRef.current[index]) {
-      cardsRef.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setSelectedYear(year);
-    }
-  };
+
 
   return (
     <section id="history" ref={containerRef} className="py-28 px-4 sm:px-8 bg-transparent overflow-hidden relative">
@@ -192,21 +186,7 @@ export const Timeline: React.FC = () => {
 
         {activeTab === 'history' ? (
           <div className="relative mt-32">
-            {/* Year Selector (Interactive Timeline) */}
-            <div className="sticky top-32 z-40 hidden lg:flex flex-col gap-4 absolute left-8">
-              {HISTORY_TIMELINE.map((item) => (
-                <button
-                  key={item.year}
-                  onClick={() => scrollToYear(item.year)}
-                  className={cn(
-                    "w-12 h-12 rounded-full flex items-center justify-center font-black transition-all duration-300",
-                    selectedYear === item.year ? "bg-black text-white scale-125 shadow-xl" : "bg-white text-gray-300 border border-gray-100 hover:border-black hover:text-black"
-                  )}
-                >
-                  {item.year.slice(-2)}
-                </button>
-              ))}
-            </div>
+
             {/* Timeline Line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 transform -translate-x-1/2 hidden md:block" />
             <div 

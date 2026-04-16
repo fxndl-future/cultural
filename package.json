@@ -1,5 +1,6 @@
 {
   "name": "cultural-tourism-web",
+  "homepage": "http://fxndl-future.github.io/cultural/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +9,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "optimize:svg": "svgo -f src/assets/icons -r --config=svgo.config.mjs"
@@ -19,7 +22,6 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.38.0",
-    "gh-pages": "^6.3.0",
     "gsap": "^3.14.2",
     "i18next": "^25.10.9",
     "i18next-browser-languagedetector": "^8.2.1",
@@ -41,7 +43,7 @@
     "@types/node": "^24.12.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
     "axe-core": "^4.11.1",
     "eslint": "^9.39.4",
@@ -59,7 +61,7 @@
     "ts-jest": "^29.4.6",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
-    "vite": "^7.3.2",
+    "vite": "^8.0.1",
     "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-svg-icons": "^2.0.1"
   }

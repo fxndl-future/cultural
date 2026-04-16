@@ -181,15 +181,7 @@ export const SeasonalInfo: React.FC = () => {
         );
       });
 
-      // 优化光晕动画
-      gsap.to('.season-glow', {
-        scale: 1.15,
-        opacity: 0.8,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-      });
+
 
     }, containerRef);
     return () => ctx.revert();

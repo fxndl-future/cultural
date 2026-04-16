@@ -169,7 +169,7 @@ const AppContent: React.FC = () => {
               <div className="col-span-12 md:col-span-8 row-span-3 relative overflow-hidden rounded-[2rem] group shadow-2xl cursor-pointer">
                 <img 
                   src={theme.images[0]} 
-                  loading="lazy" 
+
                   alt={`${season} main scene`}
                   className="w-full h-full object-cover transition-all duration-[1200ms] ease-out group-hover:scale-105"
                   onLoad={(e) => (e.currentTarget.style.opacity = '1')}
@@ -216,7 +216,7 @@ const AppContent: React.FC = () => {
               <div className="col-span-6 md:col-span-4 row-span-3 relative overflow-hidden rounded-[2rem] group shadow-xl cursor-pointer">
                 <img 
                   src={theme.images[1]} 
-                  loading="lazy" 
+
                   alt={`${season} scene 2`}
                   className="w-full h-full object-cover transition-all duration-[1000ms] ease-out group-hover:scale-110"
                   onLoad={(e) => (e.currentTarget.style.opacity = '1')}
@@ -240,7 +240,7 @@ const AppContent: React.FC = () => {
                 >
                   <img 
                     src={img} 
-                    loading="lazy" 
+  
                     alt={`${season} scene ${i + 3}`}
                     className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                     onLoad={(e) => (e.currentTarget.style.opacity = '1')}

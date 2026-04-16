@@ -1,0 +1,111 @@
+{
+  "common": {
+    "title": "文脉智旅",
+    "explore": "探索文脉",
+    "routes": "智慧路线",
+    "history": "历史长廊",
+    "settings": "设置",
+    "language": "语言",
+    "seasonal_theme": "季节主题",
+    "spring": "春",
+    "summer": "夏",
+    "autumn": "秋",
+    "winter": "冬",
+    "subtitle": "传承千年文脉，智慧引领旅程",
+    "description": "以AI技术赋能文化旅游，让每一次探索都成为与历史的深度对话",
+    "current_season": "当前季节",
+    "follow_us": "关注我们",
+    "copyright": "© 2026 文脉智旅 版权所有",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "legal": "法律声明"
+  },
+  "hero": {
+    "tagline": "智慧文旅 · 脉动中华",
+    "cta": "向下滚动探索",
+    "title": "文脉智旅",
+    "subtitle": "探寻华夏千年文脉，开启智慧人文之旅",
+    "explore": "开始探索",
+    "watch": "观看介绍"
+  },
+  "nav": {
+    "home": "首页",
+    "explore": "探索",
+    "routes": "路线",
+    "history": "历史",
+    "about": "关于"
+  },
+  "seasons": {
+    "spring": "春季",
+    "summer": "夏季",
+    "autumn": "秋季",
+    "winter": "冬季",
+    "spring_desc": "樱花盛开的季节，古都焕发新绿生机",
+    "summer_desc": "蝉鸣阵阵荷香四溢，感受夏日的宁静",
+    "autumn_desc": "红叶满山金光灿烂，层林尽染如诗如画",
+    "winter_desc": "银装素裹的宫殿在雪中别样动人",
+    "spring_tag": "春日烂漫",
+    "summer_tag": "夏日清凉",
+    "autumn_tag": "金秋如画",
+    "winter_tag": "冬日雪景",
+    "spring_title": "春日烂漫时光",
+    "summer_title": "夏日清凉避暑",
+    "autumn_title": "金秋绝美时节",
+    "winter_title": "冬日雪景奇观"
+  },
+  "gallery": {
+    "title": "时空融合",
+    "subtitle": "体验",
+    "label": "Space-Time Fusion",
+    "description": "沉浸式探索四季变换中的文化遗产，感受古今交融的视觉盛宴",
+    "scenes": "精选场景",
+    "images": "高清图片",
+    "quality": "超清画质",
+    "panorama": "全景视角",
+    "infinite": "无限探索",
+    "explore_more": "探索更多",
+    "discover": "发现隐藏的美丽故事",
+    "immersive": "Immersive Journey",
+    "texture": "细腻纹理",
+    "architecture": "建筑特写",
+    "lighting": "光影艺术"
+  },
+  "seasonal_info": {
+    "label": "Seasonal Intelligence",
+    "title": "时令节气 · 游览指南"
+  },
+  "map": {
+    "plan_route": "规划您的路线",
+    "drag_to_reorder": "拖拽调整游览顺序",
+    "current_location": "当前位置",
+    "nearby_attractions": "周边景点"
+  },
+  "footer": {
+    "brand": "文脉智旅",
+    "brand_en": "WenMai Smart Travel",
+    "tagline": "以数字化技术重新定义文化旅游体验，让每一次探索都成为穿越时空的文化对话。",
+    "explore_features": "探索功能",
+    "seasonal_experience": "季节体验",
+    "route_recommend": "路线推荐",
+    "culture_map": "文化地图",
+    "history_timeline": "历史时间轴",
+    "about_us": "关于我们",
+    "company_intro": "公司简介",
+    "development": "发展历程",
+    "team": "团队介绍",
+    "partners": "合作伙伴",
+    "news": "新闻动态",
+    "help_support": "帮助支持",
+    "user_guide": "使用指南",
+    "faq": "常见问题",
+    "feedback": "意见反馈",
+    "tech_support": "技术支持",
+    "contact_us": "联系我们"
+  },
+  "actions": {
+    "start_collab": "开启协作游览",
+    "sound_on": "音效已开启，建议佩戴耳机体验",
+    "sound_off": "音效已关闭",
+    "collab_started": "实时协作功能已开启，正在等待其他成员加入..."
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "common": {
+    "title": "WenMai Smart Travel",
+    "explore": "Explore Heritage",
+    "routes": "Smart Routes",
+    "history": "History Gallery",
+    "settings": "Settings",
+    "language": "Language",
+    "seasonal_theme": "Seasonal Theme",
+    "spring": "Spring",
+    "summer": "Summer",
+    "autumn": "Autumn",
+    "winter": "Winter",
+    "subtitle": "Inherit millennium culture, wisdom leads the journey",
+    "description": "AI-powered cultural tourism, making every exploration a deep dialogue with history",
+    "current_season": "Current Season",
+    "follow_us": "Follow Us",
+    "copyright": "© 2026 WenMai Smart Travel. All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "legal": "Legal Notice"
+  },
+  "hero": {
+    "tagline": "SMART TRAVEL · HERITAGE PULSE",
+    "cta": "Scroll to Explore",
+    "title": "WenMai Smart Travel",
+    "subtitle": "Discover China's millennium heritage with intelligent cultural journey",
+    "explore": "Start Exploring",
+    "watch": "Watch Video"
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "routes": "Routes",
+    "history": "History",
+    "about": "About"
+  },
+  "seasons": {
+    "spring": "Spring",
+    "summer": "Summer",
+    "autumn": "Autumn",
+    "winter": "Winter",
+    "spring_desc": "Cherry blossoms bloom, ancient capital embraces new vitality",
+    "summer_desc": "Cicadas sing and lotus fragrance fills the air, feel the tranquility of summer",
+    "autumn_desc": "Red leaves cover the mountains in golden splendor, layers of forests like poetry",
+    "winter_desc": "Snow-covered palaces reveal unique beauty in winter",
+    "spring_tag": "Spring Bloom",
+    "summer_tag": "Summer Cool",
+    "autumn_tag": "Autumn Gold",
+    "winter_tag": "Winter Snow",
+    "spring_title": "Spring Blossoms Time",
+    "summer_title": "Summer Cool Retreat",
+    "autumn_title": "Golden Autumn Season",
+    "winter_title": "Winter Snow Wonder"
+  },
+  "gallery": {
+    "title": "Space-Time",
+    "subtitle": "Fusion",
+    "label": "Space-Time Fusion",
+    "description": "Immersive exploration of cultural heritage through seasonal changes, experience the visual feast of ancient and modern fusion",
+    "scenes": "Selected Scenes",
+    "images": "HD Images",
+    "quality": "Ultra HD Quality",
+    "panorama": "360° Panorama",
+    "infinite": "Infinite Exploration",
+    "explore_more": "Explore More",
+    "discover": "Discover hidden beautiful stories",
+    "immersive": "Immersive Journey",
+    "texture": "Fine Texture",
+    "architecture": "Architecture Close-up",
+    "lighting": "Light Art"
+  },
+  "seasonal_info": {
+    "label": "Seasonal Intelligence",
+    "title": "Seasonal Calendar · Travel Guide"
+  },
+  "map": {
+    "plan_route": "Plan Your Route",
+    "drag_to_reorder": "Drag to reorder points",
+    "current_location": "Current Location",
+    "nearby_attractions": "Nearby Attractions"
+  },
+  "footer": {
+    "brand": "WenMai Smart Travel",
+    "brand_en": "WenMai Smart Travel",
+    "tagline": "Redefining cultural tourism with digital technology, making every exploration a dialogue through time and space.",
+    "explore_features": "Explore Features",
+    "seasonal_experience": "Seasonal Experience",
+    "route_recommend": "Route Recommendations",
+    "culture_map": "Culture Map",
+    "history_timeline": "History Timeline",
+    "about_us": "About Us",
+    "company_intro": "Company Profile",
+    "development": "Development History",
+    "team": "Our Team",
+    "partners": "Partners",
+    "news": "News",
+    "help_support": "Help & Support",
+    "user_guide": "User Guide",
+    "faq": "FAQ",
+    "feedback": "Feedback",
+    "tech_support": "Technical Support",
+    "contact_us": "Contact Us"
+  },
+  "actions": {
+    "start_collab": "Start Collaborative Tour",
+    "sound_on": "Sound enabled, headphones recommended",
+    "sound_off": "Sound disabled",
+    "collab_started": "Real-time collaboration enabled, waiting for other members..."
+  }
+}

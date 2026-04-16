@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+:root {
+  --theme-color: #ffb7c5;
+}
+
+@theme {
+  --color-season-spring: #ffb7c5;
+  --color-season-summer: #4fc3f7;
+  --color-season-autumn: #ff8a65;
+  --color-season-winter: #90a4ae;
+  
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.05);
+  --shadow-premium-hover: 0 30px 60px rgba(0, 0, 0, 0.1);
+  
+  --radius-premium: 2.5rem;
+}
+
+@layer base {
+  html, body {
+    @apply antialiased text-gray-900;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #fdfcfb;
+    width: 100%;
+  }
+  
+  /* 修复RTL布局问题 */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .text-center {
+    text-align: center !important;
+  }
+  
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 {
+    text-align: center;
+  }
+  
+  /* 防止语言切换时文字顶格 */
+  [dir="rtl"] .max-w-6xl, [dir="rtl"] .max-w-5xl, [dir="rtl"] .max-w-4xl {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* Standard modern typography */
+  h1, h2, h3, h4 {
+    @apply tracking-tight font-black;
+  }
+}
+
+/* Custom styles for maps and GSAP animations */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.parallax-container {
+  perspective: 1px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.parallax-layer {
+  transform-style: preserve-3d;
+}
+
+/* Seasonal Theme Transitions */
+.theme-spring { --theme-color: #ffb7c5; }
+.theme-summer { --theme-color: #00a86b; }
+.theme-autumn { --theme-color: #ffb02e; }
+.theme-winter { --theme-color: #a5f3fc; }
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-full hover:bg-gray-300 transition-colors;
+  }
+  
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-xl border border-white/20 shadow-premium hover:shadow-premium-hover transition-all duration-500;
+  }
+  
+  .rtl {
+    direction: rtl;
+  }
+  .ltr {
+    direction: ltr;
+  }
+  
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* No scrollbar utility */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Advanced GSAP Animation Utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.3); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+  50% { transform: scale(1.1) rotate(2deg); opacity: 0.7; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -15px) rotate(90deg); }
+  50% { transform: translate(-5px, -25px) rotate(180deg); }
+  75% { transform: translate(-15px, -10px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+.animate-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 8s ease-in-out infinite;
+}
+
+/* 季节飘落动画 */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-fall {
+  animation: fall linear infinite;
+}
+
+/* Season-specific color classes */
+.bg-season-spring { background-color: var(--color-season-spring); }
+.bg-season-summer { background-color: var(--color-season-summer); }
+.bg-season-autumn { background-color: var(--color-season-autumn); }
+.bg-season-winter { background-color: var(--color-season-winter); }
+
+.text-season-spring { color: var(--color-season-spring); }
+.text-season-summer { color: var(--color-season-summer); }
+.text-season-autumn { color: var(--color-season-autumn); }
+.text-season-winter { color: var(--color-season-winter); }
+
+.border-season-spring { border-color: var(--color-season-spring); }
+.border-season-summer { border-color: var(--color-season-summer); }
+.border-season-autumn { border-color: var(--color-season-autumn); }
+.border-season-winter { border-color: var(--color-season-winter); }
+
+/* Gradient backgrounds for seasons */
+.bg-gradient-season-spring {
+  background: linear-gradient(135deg, #ffb7c5 0%, #fce4ec 100%);
+}
+.bg-gradient-season-summer {
+  background: linear-gradient(135deg, #4fc3f7 0%, #e1f5fe 100%);
+}
+.bg-gradient-season-autumn {
+  background: linear-gradient(135deg, #ff8a65 0%, #fbe9e7 100%);
+}
+.bg-gradient-season-winter {
+  background: linear-gradient(135deg, #90a4ae 0%, #eceff1 100%);
+}
+
+/* Radial gradient for glow effects */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
+}
+
+/* Card hover effects */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-3d:hover {
+  transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Magnetic button effect base */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom popup styles for Leaflet */
+.leaflet-popup-content-wrapper {
+  border-radius: 1.5rem !important;
+  padding: 0 !important;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.leaflet-popup-tip {
+  display: none;
+}
+
+/* Seasonal opacity variations */
+.text-season-spring\/20 { color: rgba(255, 183, 197, 0.2); }
+.text-season-spring\/40 { color: rgba(255, 183, 197, 0.4); }
+.text-season-summer\/20 { color: rgba(79, 195, 247, 0.2); }
+.text-season-summer\/40 { color: rgba(79, 195, 247, 0.4); }
+.text-season-autumn\/20 { color: rgba(255, 138, 101, 0.2); }
+.text-season-autumn\/40 { color: rgba(255, 138, 101, 0.4); }
+.text-season-winter\/20 { color: rgba(144, 164, 174, 0.2); }
+.text-season-winter\/40 { color: rgba(144, 164, 174, 0.4); }
+
+.bg-season-spring\/10 { background-color: rgba(255, 183, 197, 0.1); }
+.bg-season-summer\/10 { background-color: rgba(79, 195, 247, 0.1); }
+.bg-season-autumn\/10 { background-color: rgba(255, 138, 101, 0.1); }
+.bg-season-winter\/10 { background-color: rgba(144, 164, 174, 0.1); }

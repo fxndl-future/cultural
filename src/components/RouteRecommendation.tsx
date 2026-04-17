@@ -439,37 +439,37 @@ export const RouteRecommendation: React.FC = () => {
       
       <div className="max-w-[1600px] mx-auto relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-16">
+        <div ref={headerRef} className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-8 mb-12 lg:mb-16">
           <div className="flex-1">
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               <div className={cn(
-                "w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg",
+                "w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center text-white shadow-lg",
                 `bg-season-${season}`
               )}>
-                <Route size={24} />
+                <Route size={20} className="sm:w-6 sm:h-6" />
               </div>
-              <span className="text-xs font-black uppercase tracking-[0.5em] text-gray-400">
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-gray-400">
                 AI-Powered Routes
               </span>
-              <Sparkles size={16} className="route-sparkle text-yellow-500" />
+              <Sparkles size={14} className="route-sparkle text-yellow-500 sm:w-4 sm:h-4" />
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter italic mb-6">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter italic mb-4 sm:mb-6">
               智能路线推荐
             </h2>
-            <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed">
               基于当前{season === 'spring' ? '春季' : season === 'summer' ? '夏季' : season === 'autumn' ? '秋季' : '冬季'}
               时节特点，为您精选最佳游览路线，结合天气、人流与景观最佳观赏时机。
             </p>
           </div>
 
           {/* Filter Buttons */}
-          <div className="flex p-2 bg-white rounded-2xl border border-gray-100 shadow-lg">
+          <div className="flex flex-wrap p-1.5 sm:p-2 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-lg">
             {(['all', 'easy', 'medium', 'hard'] as const).map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
                 className={cn(
-                  "px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300",
+                  "px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest transition-all duration-300",
                   activeFilter === filter
                     ? "bg-black text-white shadow-lg"
                     : "text-gray-400 hover:text-gray-800 hover:bg-gray-50"
@@ -483,25 +483,25 @@ export const RouteRecommendation: React.FC = () => {
 
         {/* Season Match Banner */}
         <div className={cn(
-          "mb-12 p-8 rounded-[2rem] border border-white/40 backdrop-blur-xl shadow-xl flex items-center justify-between overflow-hidden relative",
+          "mb-8 sm:mb-12 p-4 sm:p-8 rounded-2xl sm:rounded-[2rem] border border-white/40 backdrop-blur-xl shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0 overflow-hidden relative",
           `bg-season-${season}/10`
         )}>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-radial from-white/20 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="flex items-center gap-6 relative z-10">
+          <div className="absolute top-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-gradient-radial from-white/20 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="flex items-center gap-4 sm:gap-6 relative z-10">
             <div className={cn(
-              "w-20 h-20 rounded-3xl flex items-center justify-center text-white shadow-2xl",
+              "w-14 h-14 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl flex items-center justify-center text-white shadow-2xl flex-shrink-0",
               `bg-season-${season}`
             )}>
-              <Sparkles size={36} className="route-sparkle" />
+              <Sparkles size={24} className="route-sparkle sm:w-9 sm:h-9" />
             </div>
-            <div>
-              <p className="text-sm font-black text-gray-400 uppercase tracking-widest mb-2">
+            <div className="min-w-0">
+              <p className="text-xs sm:text-sm font-black text-gray-400 uppercase tracking-wider sm:tracking-widest mb-1 sm:mb-2">
                 当季最佳匹配
               </p>
-              <h3 className="text-3xl font-black">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black truncate">
                 {routes[0]?.name}
               </h3>
-              <p className="text-gray-500 mt-1">
+              <p className="text-sm sm:text-base text-gray-500 mt-1">
                 季节匹配度 <span className={cn("font-black", `text-season-${season}`)}>{routes[0]?.seasonMatch}%</span>
               </p>
             </div>
@@ -509,12 +509,12 @@ export const RouteRecommendation: React.FC = () => {
           <button
             onClick={() => handleSelectRoute(routes[0])}
             className={cn(
-              "px-8 py-4 rounded-2xl text-white font-black uppercase tracking-widest shadow-xl hover:shadow-2xl transition-all active:scale-95 relative z-10 flex items-center gap-3",
+              "px-5 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-white font-black uppercase tracking-wider sm:tracking-widest shadow-xl hover:shadow-2xl transition-all active:scale-95 relative z-10 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center",
               `bg-season-${season}`
             )}
           >
             立即体验
-            <ChevronRight size={20} />
+            <ChevronRight size={18} className="sm:w-5 sm:h-5" />
           </button>
         </div>
 
@@ -644,35 +644,35 @@ export const RouteRecommendation: React.FC = () => {
         </div>
 
         {/* Quick Actions Bar */}
-        <div className="mt-16 p-8 bg-black rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-center gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center">
-              <Footprints size={28} className="text-white" />
+        <div className="mt-12 sm:mt-16 p-5 sm:p-8 bg-black rounded-2xl sm:rounded-[2.5rem] flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-8">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <Footprints size={22} className="text-white sm:w-7 sm:h-7" />
             </div>
             <div>
-              <p className="text-white/60 text-xs font-black uppercase tracking-widest mb-1">
+              <p className="text-white/60 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest mb-1">
                 自定义路线
               </p>
-              <h4 className="text-white text-xl font-black">
+              <h4 className="text-white text-base sm:text-xl font-black">
                 想要更个性化的体验？
               </h4>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full md:w-auto">
             <button 
               onClick={() => showNotification('AI路线生成器已启动，请描述您的偏好...', 'info')}
-              className="px-8 py-4 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-100 transition-all active:scale-95 flex items-center gap-3"
+              className="px-5 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-gray-100 transition-all active:scale-95 flex items-center justify-center gap-2 sm:gap-3"
             >
-              <Sparkles size={16} />
+              <Sparkles size={14} className="sm:w-4 sm:h-4" />
               AI 生成路线
             </button>
             <button 
               onClick={() => {
                 document.querySelector('#routes')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 bg-white/10 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all active:scale-95 flex items-center gap-3 border border-white/10"
+              className="px-5 sm:px-8 py-3 sm:py-4 bg-white/10 text-white rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest hover:bg-white/20 transition-all active:scale-95 flex items-center justify-center gap-2 sm:gap-3 border border-white/10"
             >
-              <Camera size={16} />
+              <Camera size={14} className="sm:w-4 sm:h-4" />
               手动规划
             </button>
           </div>

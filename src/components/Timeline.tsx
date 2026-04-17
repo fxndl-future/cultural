@@ -117,23 +117,97 @@ export const Timeline: React.FC = () => {
         );
       }
 
-      // Card staggered entrance with 3D effect
+      // Card flip entrance animation - 从中间向两边翻开
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
-        gsap.from(card, {
-          x: index % 2 === 0 ? -100 : 100,
-          opacity: 0,
-          rotationY: index % 2 === 0 ? 45 : -45,
-          transformPerspective: 1000,
-          duration: 1.5,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'top 50%',
-            toggleActions: 'play none none reverse',
-          }
-        });
+
+        // 获取左右两部分内容
+        const leftContent = card.querySelector('.timeline-left-content');
+        const rightContent = card.querySelector('.timeline-right-content');
+        const circle = card.querySelector('.timeline-circle');
+
+        // 判断是否是反向布局（奇数项）
+        const isReversed = index % 2 !== 0;
+
+        // 初始状态 - 隐藏内容
+        if (leftContent && rightContent) {
+          gsap.set([leftContent, rightContent], {
+            opacity: 0,
+          });
+        }
+
+        // 圆圈先出现并放大 - 线到达时触发
+        if (circle) {
+          gsap.fromTo(circle,
+            { scale: 0, opacity: 0 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              ease: 'back.out(1.7)',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 60%', // 线到达圆圈位置时触发
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        }
+
+        // 左侧内容动画（根据布局方向决定翻转方向）
+        if (leftContent) {
+          // 正常布局：左侧在左，向左翻开
+          // 反向布局：左侧在右，向右翻开
+          gsap.fromTo(leftContent,
+            {
+              opacity: 0,
+              x: isReversed ? -60 : 60,
+              rotationY: isReversed ? 60 : -60,
+              transformOrigin: isReversed ? 'left center' : 'right center',
+              transformPerspective: 1000
+            },
+            {
+              opacity: 1,
+              x: 0,
+              rotationY: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 55%', // 线过了圆圈后触发
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        }
+
+        // 右侧内容动画（根据布局方向决定翻转方向）
+        if (rightContent) {
+          // 正常布局：右侧在右，向右翻开
+          // 反向布局：右侧在左，向左翻开
+          gsap.fromTo(rightContent,
+            {
+              opacity: 0,
+              x: isReversed ? 60 : -60,
+              rotationY: isReversed ? -60 : 60,
+              transformOrigin: isReversed ? 'right center' : 'left center',
+              transformPerspective: 1000
+            },
+            {
+              opacity: 1,
+              x: 0,
+              rotationY: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              delay: 0.15, // 稍微延迟，形成错落感
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 55%', // 线过了圆圈后触发
+                toggleActions: 'play none none reverse',
+              }
+            }
+          );
+        }
       });
     }, containerRef);
 
@@ -148,37 +222,37 @@ export const Timeline: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-24">
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-12 bg-black" />
-              <span className="text-sm font-black tracking-[0.3em] text-gray-400 uppercase">Spatio-temporal Experience</span>
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <span className="h-px w-8 sm:w-12 bg-black" />
+              <span className="text-xs sm:text-sm font-black tracking-[0.2em] sm:tracking-[0.3em] text-gray-400 uppercase">Spatio-temporal Experience</span>
             </div>
-            <h2 className="text-6xl md:text-7xl font-black text-gray-900 mb-8 tracking-tighter">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 sm:mb-8 tracking-tighter">
               时空融合体验
             </h2>
-            <p className="text-gray-500 text-xl max-w-2xl leading-relaxed">
+            <p className="text-gray-500 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed">
               切换现实与历史时间轴，探索同一个地理坐标在不同时空维度下的文化印记与历史变迁。
             </p>
           </div>
           
-          <div className="flex p-2 bg-gray-50 rounded-[2rem] border border-gray-100 shadow-inner self-start lg:self-auto group">
+          <div className="flex p-1.5 sm:p-2 bg-gray-50 rounded-2xl sm:rounded-[2rem] border border-gray-100 shadow-inner self-start lg:self-auto group">
             <button 
               onClick={() => setActiveTab('history')}
               className={cn(
-                "flex items-center gap-3 px-10 py-4 rounded-[1.5rem] transition-all duration-500 font-black uppercase tracking-widest text-xs",
+                "flex items-center gap-2 sm:gap-3 px-5 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-[1.5rem] transition-all duration-500 font-black uppercase tracking-wider sm:tracking-widest text-[10px] sm:text-xs",
                 activeTab === 'history' ? "bg-black text-white shadow-2xl scale-105" : "text-gray-400 hover:text-gray-800"
               )}
             >
-              <History size={18} />
+              <History size={16} className="sm:w-[18px] sm:h-[18px]" />
               历史长廊
             </button>
             <button 
               onClick={() => setActiveTab('real')}
               className={cn(
-                "flex items-center gap-3 px-10 py-4 rounded-[1.5rem] transition-all duration-500 font-black uppercase tracking-widest text-xs",
+                "flex items-center gap-2 sm:gap-3 px-5 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-[1.5rem] transition-all duration-500 font-black uppercase tracking-wider sm:tracking-widest text-[10px] sm:text-xs",
                 activeTab === 'real' ? "bg-black text-white shadow-2xl scale-105" : "text-gray-400 hover:text-gray-800"
               )}
             >
-              <Clock size={18} />
+              <Clock size={16} className="sm:w-[18px] sm:h-[18px]" />
               游览日程
             </button>
           </div>
@@ -194,65 +268,49 @@ export const Timeline: React.FC = () => {
               className="absolute left-1/2 top-0 bottom-0 w-1 bg-black transform -translate-x-1/2 hidden md:block z-10" 
             />
             
-            <div className="space-y-48 relative">
+            <div className="space-y-24 sm:space-y-32 lg:space-y-48 relative">
               {HISTORY_TIMELINE.map((item, index) => (
-                <div 
-                  key={index}
-                  ref={(el) => {
-                    cardsRef.current[index] = el;
-                  }}
-                  className={cn(
-                    "flex flex-col md:flex-row items-center gap-16 lg:gap-32",
-                    index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                  )}
-                  onMouseEnter={(e) => {
-                    gsap.to(e.currentTarget, {
-                      rotationY: index % 2 === 0 ? 5 : -5,
-                      scale: 1.02,
-                      duration: 0.4,
-                      ease: 'power2.out'
-                    });
-                  }}
-                  onMouseLeave={(e) => {
-                    gsap.to(e.currentTarget, {
-                      rotationY: 0,
-                      scale: 1,
-                      duration: 0.4,
-                      ease: 'power2.out'
-                    });
-                  }}
-                >
-                  <div className="flex-1 text-center md:text-left">
-                    <div className={cn("flex flex-col relative", index % 2 !== 0 ? "md:items-end md:text-right" : "md:items-start")}>
-                      <span className="text-8xl lg:text-[10rem] font-black text-gray-50 mb-4 leading-none select-none">
+                <div
+                key={index}
+                ref={(el) => {
+                  cardsRef.current[index] = el;
+                }}
+                className={cn(
+                  "flex flex-col md:flex-row items-center gap-8 sm:gap-16 lg:gap-32",
+                  index % 2 !== 0 ? "md:flex-row-reverse" : ""
+                )}
+              >
+                <div className="timeline-left-content flex-1 text-center md:text-left" style={{ transformStyle: 'preserve-3d' }}>
+                  <div className={cn("flex flex-col relative", index % 2 !== 0 ? "md:items-end md:text-right" : "md:items-start")}>
+                      <span className="text-6xl sm:text-8xl lg:text-[10rem] font-black text-gray-50 mb-4 leading-none select-none">
                         {item.year}
                       </span>
-                      <div className="relative z-10 -mt-12 md:-mt-20">
-                        <h3 className="text-4xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                      <div className="relative z-10 -mt-8 sm:-mt-12 md:-mt-20">
+                        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4 sm:mb-6 tracking-tight">
                           {item.event}
                         </h3>
                         <div className={cn(
-                          "absolute -top-4 w-12 h-1.5 bg-black",
-                          index % 2 !== 0 ? "-right-4" : "-left-4"
+                          "absolute -top-2 sm:-top-4 w-8 sm:w-12 h-1 sm:h-1.5 bg-black",
+                          index % 2 !== 0 ? "-right-2 sm:-right-4" : "-left-2 sm:-left-4"
                         )} />
                       </div>
-                      <p className="text-gray-500 text-lg leading-relaxed max-w-md relative z-10">
+                      <p className="text-gray-500 text-sm sm:text-base lg:text-lg leading-relaxed max-w-md relative z-10 px-4 md:px-0">
                         {item.detail}
                       </p>
-                      <button className="mt-8 flex items-center gap-3 text-xs font-black uppercase tracking-widest group bg-gray-50 hover:bg-black hover:text-white px-6 py-3 rounded-full transition-all relative z-10">
+                      <button className="mt-6 sm:mt-8 flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest group bg-gray-50 hover:bg-black hover:text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all relative z-10 mx-auto md:mx-0">
                         了解更多
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
                     </div>
                   </div>
                   
-                  <div className="relative z-20 w-16 h-16 rounded-full bg-white border-8 border-black flex items-center justify-center shadow-2xl group cursor-help">
-                    <div className="w-3 h-3 rounded-full bg-black group-hover:scale-150 transition-transform duration-500" />
+                  <div className="timeline-circle relative z-20 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-4 sm:border-8 border-black flex items-center justify-center shadow-2xl group cursor-help flex-shrink-0">
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-black group-hover:scale-150 transition-transform duration-500" />
                     <div className="absolute inset-0 rounded-full bg-black/5 animate-ping" />
                   </div>
-                  
-                  <div className="flex-1 hidden md:block">
-                    <div className="aspect-[4/3] bg-gray-100 rounded-[3rem] overflow-hidden border border-gray-100 group cursor-pointer shadow-2xl relative">
+
+                  <div className="timeline-right-content flex-1 hidden md:block" style={{ transformStyle: 'preserve-3d' }}>
+                    <div className="aspect-[4/3] bg-gray-100 rounded-2xl sm:rounded-[3rem] overflow-hidden border border-gray-100 group cursor-pointer shadow-2xl relative">
                       <img 
                         src={item.image} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000" 
@@ -265,7 +323,7 @@ export const Timeline: React.FC = () => {
                         style={{ opacity: 0, transition: 'opacity 0.5s' }}
                       />
                       <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="bg-white text-black px-6 py-3 rounded-full font-black text-xs uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <span className="bg-white text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform">
                           View Archives
                         </span>
                       </div>

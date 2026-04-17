@@ -243,11 +243,11 @@ export const SeasonalInfo: React.FC = () => {
               'text-blue-200 text-sm'
             )}
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `-${Math.random() * 20}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${8 + Math.random() * 6}s`,
-              opacity: 0.4 + Math.random() * 0.3,
+              left: `${(i * 5) % 100}%`,
+              top: `-${(i * 3) % 20}%`,
+              animationDelay: `${(i * 0.5) % 10}s`,
+              animationDuration: `${8 + (i % 6)}s`,
+              opacity: 0.4 + (i % 3) * 0.1,
             }}
           >
             {season === 'spring' ? '🌸' :
@@ -258,26 +258,26 @@ export const SeasonalInfo: React.FC = () => {
       </div>
 
       {/* 季节切换器 */}
-      <div data-reveal className="relative mb-20 z-10">
-        <div className="flex flex-col items-center gap-8">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-gray-100 shadow-sm mb-6">
+      <div data-reveal className="relative mb-12 sm:mb-20 z-10">
+        <div className="flex flex-col items-center gap-6 sm:gap-8">
+          <div className="text-center px-4">
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-gray-100 shadow-sm mb-4 sm:mb-6">
               <div className={cn("w-2 h-2 rounded-full animate-pulse", `bg-season-${season}`)} />
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400">Season Experience</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-gray-400">Season Experience</p>
             </div>
-            <h3 className="text-5xl md:text-7xl font-black tracking-tight">
+            <h3 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight">
               <span className={cn(
                 "text-transparent bg-clip-text bg-gradient-to-r",
                 SEASON_ACCENT_COLORS[season]
               )}>{SEASON_FULL_NAMES[season]}</span>
             </h3>
-            <p className="text-lg text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-gray-500 mt-3 sm:mt-4 max-w-xl mx-auto leading-relaxed px-2">
               {SEASON_DESCRIPTIONS[season]}
             </p>
           </div>
 
           {/* 季节选择器 - 更优雅 */}
-          <div className="flex p-2 bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-100 shadow-xl">
+          <div className="flex flex-wrap justify-center p-2 bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-100 shadow-xl mx-4">
             {SEASONS.map((s) => {
               const Icon = SEASON_ICONS[s];
               const isActive = s === season;
@@ -287,15 +287,15 @@ export const SeasonalInfo: React.FC = () => {
                   onClick={() => handleSeasonSwitch(s)}
                   disabled={isTransitioning}
                   className={cn(
-                    "relative px-6 md:px-10 py-4 rounded-xl transition-all duration-500 font-bold text-sm flex items-center gap-2 md:gap-3",
+                    "relative px-4 sm:px-6 md:px-10 py-3 sm:py-4 rounded-xl transition-all duration-500 font-bold text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 md:gap-3",
                     isActive 
                       ? `bg-gradient-to-r ${SEASON_ACCENT_COLORS[s]} text-white shadow-lg scale-105` 
                       : "text-gray-500 hover:text-gray-700 hover:bg-gray-50",
                     isTransitioning && "pointer-events-none opacity-50"
                   )}
                 >
-                  <Icon size={20} className={cn("transition-transform", !isActive && "group-hover:rotate-12")} />
-                  <span>{SEASON_NAMES[s]}季</span>
+                  <Icon size={16} className={cn("sm:w-5 transition-transform", !isActive && "group-hover:rotate-12")} />
+                  <span className="whitespace-nowrap">{SEASON_NAMES[s]}季</span>
                 </button>
               );
             })}

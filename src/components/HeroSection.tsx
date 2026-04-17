@@ -226,10 +226,10 @@ export const HeroSection: React.FC = () => {
               'w-1.5 h-1.5 bg-white/50'
             )}
             style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 4}s`,
+              left: `${10 + (i * 7) % 80}%`,
+              top: `${10 + (i * 11) % 80}%`,
+              animationDelay: `${(i * 0.5) % 5}s`,
+              animationDuration: `${5 + (i % 4)}s`,
             }}
           />
         ))}
@@ -249,31 +249,31 @@ export const HeroSection: React.FC = () => {
         </div>
         
         {/* 主标题 - 优化排版 */}
-        <div ref={titleRef} className="mb-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight text-white drop-shadow-2xl">
+        <div ref={titleRef} className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-tight text-white drop-shadow-2xl px-2">
             <span className="block">{t('common.title')}</span>
           </h1>
-          <div className="mt-4 flex justify-center">
-            <div className="w-20 h-1 rounded-full bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+          <div className="mt-3 sm:mt-4 flex justify-center">
+            <div className="w-16 sm:w-20 h-1 rounded-full bg-gradient-to-r from-transparent via-white/60 to-transparent" />
           </div>
         </div>
         
         {/* 描述文字 - 优化间距和层次 */}
-        <div ref={descRef} className="mb-12">
-          <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium mb-4">
+        <div ref={descRef} className="mb-8 sm:mb-12 px-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-medium mb-3 sm:mb-4">
             {t('common.subtitle')}
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
             {t('common.description')}
           </p>
         </div>
 
         {/* CTA按钮 - 优化样式 */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16 px-4">
           <button 
             onClick={handleExplore}
             className={cn(
-              "group relative px-10 py-4 rounded-full font-bold text-white overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-3",
+              "group relative px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-white overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl active:scale-95 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center",
               `bg-gradient-to-r hover:scale-105`,
               season === 'spring' ? 'from-pink-500 to-rose-500' :
               season === 'summer' ? 'from-amber-500 to-yellow-500' :
@@ -281,8 +281,8 @@ export const HeroSection: React.FC = () => {
               'from-blue-500 to-cyan-500'
             )}
           >
-            <span className="relative z-10 flex items-center gap-3 text-base">
-              <Compass size={20} className="group-hover:rotate-45 transition-transform duration-500" />
+            <span className="relative z-10 flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
+              <Compass size={18} className="sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-500" />
               {t('hero.explore')}
             </span>
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -290,9 +290,9 @@ export const HeroSection: React.FC = () => {
           
           <button 
             onClick={handleWatchVideo}
-            className="group px-8 py-4 rounded-full font-medium text-white/90 border border-white/30 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 flex items-center gap-3"
+            className="group px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium text-white/90 border border-white/30 backdrop-blur-xl hover:bg-white/10 transition-all duration-300 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center"
           >
-            <Play size={18} className="group-hover:scale-110 transition-transform" />
+            <Play size={16} className="sm:w-[18px] sm:h-[18px] group-hover:scale-110 transition-transform" />
             {t('hero.watch')}
           </button>
         </div>

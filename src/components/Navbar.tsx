@@ -120,15 +120,15 @@ export const Navbar: React.FC = () => {
           ? "bg-white/95 backdrop-blur-2xl border-b border-gray-100 py-3 shadow-2xl shadow-gray-200/30" 
           : "bg-transparent py-6"
       )}>
-        <div className="flex items-center gap-4 group cursor-pointer">
+        <div className="flex items-center gap-3 sm:gap-4 group cursor-pointer">
           <div className={cn(
-            "w-11 h-11 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-lg", 
+            "w-9 h-9 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-lg", 
             `bg-season-${season}`
           )}>
-            <Map className="text-white" size={22} />
+            <Map className="text-white" size={18} />
           </div>
           <h1 className={cn(
-            "text-xl font-black tracking-tight transition-all duration-500 whitespace-nowrap",
+            "text-base sm:text-lg md:text-xl font-black tracking-tight transition-all duration-500 whitespace-nowrap max-w-[120px] sm:max-w-none truncate",
             isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
           )}>
             {t('common.title')}
@@ -163,12 +163,12 @@ export const Navbar: React.FC = () => {
           </div>
 
           <div className={cn(
-            "flex items-center gap-2 md:pl-6 md:border-l transition-all duration-500",
+            "flex items-center gap-1 sm:gap-2 md:pl-6 md:border-l transition-all duration-500",
             isScrolled ? "border-gray-200" : "border-white/20"
           )}>
             {/* Season Selector */}
             <div className={cn(
-              "hidden md:flex items-center gap-1.5 p-1 rounded-full transition-all duration-500",
+              "hidden md:flex items-center gap-1 p-1 rounded-full transition-all duration-500",
               isScrolled ? "bg-gray-100" : "bg-white/10 backdrop-blur-xl border border-white/10"
             )}>
               {seasons.map((s) => {
@@ -179,7 +179,7 @@ export const Navbar: React.FC = () => {
                     key={s}
                     onClick={() => handleSeasonChange(s)}
                     className={cn(
-                      "w-8 h-8 rounded-full transition-all duration-300 flex items-center justify-center text-sm shadow-sm hover:scale-110",
+                      "w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-all duration-300 flex items-center justify-center text-xs sm:text-sm shadow-sm hover:scale-110",
                       isActive 
                         ? `bg-gradient-to-br ${config.color} text-white shadow-md ring-2 ring-white/60 scale-105` 
                         : isScrolled 
@@ -199,21 +199,21 @@ export const Navbar: React.FC = () => {
             <button 
               onClick={toggleLanguage} 
               className={cn(
-                "p-2.5 rounded-xl transition-all hover:scale-110 active:scale-95",
+                "p-2 sm:p-2.5 rounded-xl transition-all hover:scale-110 active:scale-95",
                 isScrolled 
                   ? "hover:bg-gray-100 text-gray-700" 
                   : "hover:bg-white/20 text-white"
               )} 
               title={t('common.language')}
             >
-              <Languages size={18} />
+              <Languages size={16} className="sm:w-[18px] sm:h-[18px]" />
             </button>
 
             {/* Animation Toggle */}
             <button 
               onClick={() => setAnimationsEnabled(!animationsEnabled)} 
               className={cn(
-                "p-2.5 rounded-xl transition-all hover:scale-110 active:scale-95",
+                "p-2 sm:p-2.5 rounded-xl transition-all hover:scale-110 active:scale-95",
                 isScrolled ? "hover:bg-gray-100" : "hover:bg-white/20",
                 animationsEnabled 
                   ? "text-yellow-500 drop-shadow-lg" 
@@ -221,18 +221,18 @@ export const Navbar: React.FC = () => {
               )} 
               title="Toggle Animations"
             >
-              <Sparkles size={18} fill={animationsEnabled ? "currentColor" : "none"} />
+              <Sparkles size={16} className="sm:w-[18px] sm:h-[18px]" fill={animationsEnabled ? "currentColor" : "none"} />
             </button>
 
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(true)} 
               className={cn(
-                "lg:hidden p-2.5 rounded-xl transition-all hover:scale-110",
+                "lg:hidden p-2 sm:p-2.5 rounded-xl transition-all hover:scale-110",
                 isScrolled ? "hover:bg-gray-100 text-gray-700" : "hover:bg-white/20 text-white"
               )}
             >
-              <Menu size={22} />
+              <Menu size={20} className="sm:w-[22px] sm:h-[22px]" />
             </button>
           </div>
         </div>

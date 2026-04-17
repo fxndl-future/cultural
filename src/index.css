@@ -24,6 +24,11 @@
     overflow-x: hidden;
     background-color: #fdfcfb;
     width: 100%;
+    min-width: 320px;
+  }
+  
+  * {
+    box-sizing: border-box;
   }
   
   /* 修复RTL布局问题 */
